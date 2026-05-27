@@ -6,7 +6,9 @@ import './index.css'
 import { AuthProvider } from "./context/AuthContext";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
+    <AuthProvider>
+    <BrowserRouter>
     <App />
   </BrowserRouter>
+</AuthProvider>
 )
