@@ -40,6 +40,22 @@ function MoviesPage() {
             watched: false
         })
     }
+
+    const handleDelete = (id)=>{
+        setMovies(movies.filter((movie)=>movie.id !== id))
+    }
+    const toggleWatched = (id) => {
+        setMovies(
+            movies.map((movie) =>
+                movie.id === id
+                    ? { ...movie, watched: !movie.watched }
+                    : movie
+            )
+        )
+    }
+
+
+
     return (
         <div className="p-8">
             <h1 className="text-3xl font-bold mb-6">Movies</h1>
@@ -88,14 +104,35 @@ function MoviesPage() {
                 </button>
             </form>
 
-
             <div className="grid gap-4">
                 {movies.map((movie) => (
-                    <div key={movie.id} className="border p-4 rounded">
+                    <div key={movie.id} className="border p-4 rounded bg-white shadow-sm">
+
                         <h2 className="text-xl font-semibold">{movie.title}</h2>
                         <p>Director: {movie.director}</p>
                         <p>Genre: {movie.genre}</p>
-                        <p>Watched: {movie.watched ? "Yes" : "No"}</p>
+                        <p>
+                            Watched:{" "}
+                            <span className={movie.watched ? "text-green-600" : "text-red-600"}>
+                {movie.watched ? "Yes" : "No"}
+              </span>
+                        </p>
+
+                        <div className="flex gap-3 mt-3">
+                            <button
+                                onClick={() => toggleWatched(movie.id)}
+                                className="bg-blue-500 text-white px-3 py-1 rounded"
+                            >
+                                Toggle Watched
+                            </button>
+
+                            <button
+                                onClick={() => handleDelete(movie.id)}
+                                className="bg-red-500 text-white px-3 py-1 rounded"
+                            >
+                                Delete
+                            </button>
+                        </div>
                     </div>
                 ))}
             </div>
@@ -104,3 +141,8 @@ function MoviesPage() {
 }
 
 export default MoviesPage
+
+
+
+
+
