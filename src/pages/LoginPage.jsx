@@ -1,11 +1,21 @@
-// TODO: import and use AuthContext to call login() when the button is clicked
-// TODO: after login, navigate to /movies
+import { useNavigate} from "react-router-dom";
+import {useAuth} from "../context/AuthContext.jsx";
 
 function LoginPage() {
+    const {login} = useAuth()
+    const navigate = useNavigate()
+
+    const handleLogin = ()=>{
+        login()
+        navigate('/movies')
+    }
+
   return (
-    <div className="p-8 max-w-sm mx-auto">
-      <h1 className="text-2xl font-bold text-gray-900 mb-6">Login</h1>
-      <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+    <div className="p-8 text-center">
+      <h1 className="text-2xl font-bold mb-4">Login</h1>
+      <button
+          onClick={handleLogin}
+          className="bg-blue-600 text-white px-4 py-2 rounded ">
         Login
       </button>
     </div>
