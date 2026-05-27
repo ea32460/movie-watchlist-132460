@@ -5,3 +5,4 @@ export const movies = [
   { id: 4, title: 'Parasite', director: 'Bong Joon-ho', genre: 'Thriller', watched: false },
   { id: 5, title: 'The Dark Knight', director: 'Christopher Nolan', genre: 'Action', watched: true },
 ]
+export default movies
